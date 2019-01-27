@@ -8,7 +8,6 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.main_activity.*
-import nokia.tablefootball.tablefootballandroid.R.id.main_webview
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val url = intent.extras.get("url").toString()
 
         main_webview.settings.javaScriptEnabled = true // ## Check JS vulnerabilities ##
-        main_webview.settwings.setAppCacheEnabled(true)
+        main_webview.settings.setAppCacheEnabled(true)
         main_webview.settings.domStorageEnabled = true
 
 

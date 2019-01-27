@@ -17,7 +17,7 @@ class InputAdressActivity : AppCompatActivity() {
         apply_button.setOnClickListener {
             val ipAddress = ip_textinput.text
 
-            val intent = Intent(applicationContext, MainActivity::class.java);
+            val intent = Intent(applicationContext, TablesActivity::class.java);
             intent.putExtra("url",ipAddress)
 
             startActivity(intent)

@@ -7,6 +7,6 @@ interface DataAcquirerService {
     fun post(
         path: String,
         params: JSONObject?,
-        completionHandler: (response: JSONArray?) -> Unit
+        completionHandler: (response: JSONArray) -> Unit
     )
 }

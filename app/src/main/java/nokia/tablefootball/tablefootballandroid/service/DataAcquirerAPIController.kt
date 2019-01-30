@@ -10,7 +10,7 @@ class DataAcquirerAPIController constructor(serviceInjection: DataAcquirerServic
     override fun post(
         path: String,
         params: JSONObject?,
-        completionHandler: (response: JSONArray?) -> Unit
+        completionHandler: (response: JSONArray) -> Unit
     ) {
         service.post(path,params, completionHandler)
     }

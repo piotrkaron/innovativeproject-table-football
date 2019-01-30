@@ -10,16 +10,14 @@ import nokia.tablefootball.tablefootballandroid.RequestQueueSingleton
 import org.json.JSONArray
 import org.json.JSONObject
 
-class DataAcquirerServiceImpl(context: Context) : DataAcquirerService {
+class DataAcquirerServiceImpl(private val context: Context) : DataAcquirerService {
 
     private val TAG = "JSON GET"
-
-    val context = context
 
     override fun post(
         path: String,
         params: JSONObject?,
-        completionHandler: (response: JSONArray?) -> Unit
+        completionHandler: (response: JSONArray) -> Unit
     ) {
                                                                          //   TODO("params")
         val jsonArrayRequest = JsonArrayRequest(Request.Method.GET, path, null,
@@ -29,7 +27,7 @@ class DataAcquirerServiceImpl(context: Context) : DataAcquirerService {
             },
             Response.ErrorListener { error ->
                 VolleyLog.e(TAG, "/post request fail! Error: ${error.message}")
-                completionHandler(null)
+                completionHandler(JSONArray())
             })
 
         RequestQueueSingleton.getInstance(context).addToRequestQueue(jsonArrayRequest)

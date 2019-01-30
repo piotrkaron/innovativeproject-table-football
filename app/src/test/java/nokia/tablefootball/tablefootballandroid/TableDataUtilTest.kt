@@ -1,6 +1,7 @@
 package nokia.tablefootball.tablefootballandroid
 
 import com.natpryce.hamkrest.assertion.assertThat
+import com.natpryce.hamkrest.contains
 import com.natpryce.hamkrest.equalTo
 import nokia.tablefootball.tablefootballandroid.dto.TableDTO
 import nokia.tablefootball.tablefootballandroid.utils.TableDataUtil
@@ -38,5 +39,22 @@ class TableDataUtilTest{
         val result = TableDataUtil.toFloorMap(array)
 
         assertThat(result[2]!!.size, equalTo(2))
+    }
+
+    @Test
+    fun givenCollectionOfInts_shouldReturnListWithStrings(){
+        val values = HashSet<Int>()
+        values.add(1)
+        values.add(22)
+        values.add(33)
+
+        val result = TableDataUtil.asStringList(values)
+
+        assertThat(result.size, equalTo(3))
+        assert(result.contains("22"))
+        assert(result.contains("1"))
+        assert(result.contains("33"))
+
+
     }
 }

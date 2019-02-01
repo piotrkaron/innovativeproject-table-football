@@ -8,6 +8,7 @@ import nokia.tablefootball.tablefootballandroid.network.DataAcquirerAPIControlle
 import nokia.tablefootball.tablefootballandroid.network.DataAcquirerServiceImpl
 import nokia.tablefootball.tablefootballandroid.utils.JSONTableParser
 import nokia.tablefootball.tablefootballandroid.utils.TableDataUtil
+import org.json.JSONArray
 
 class TablesActivity : AppCompatActivity() {
 
@@ -20,13 +21,24 @@ class TablesActivity : AppCompatActivity() {
 
         val url = intent.extras.getString("URL").toString()
 
-        controller.post(url, null) { response ->
-            val expandableListAdapter = FloorListAdapter(
-                applicationContext,
-                JSONTableParser.parseArray(response)
-            )
-            expandableListView.setAdapter(expandableListAdapter)
-        }
+        val testArray = JSONArray("[{\"id\":\"01:C1:D1:31:F2:C1\",\"occupied\":true,\"online\":true,\"lastNotificationDate\":1539159310000,\"floor\":2,\"room\":225},{\"id\":\"01:F1:D1:31:F1:C1\",\"occupied\":true,\"online\":true,\"lastNotificationDate\":1539159310000,\"floor\":4,\"room\":473},{\"id\":\"21:33:88:31:20:C1\",\"occupied\":false,\"online\":true,\"lastNotificationDate\":1539159310000,\"floor\":0,\"room\":80},{\"id\":\"43:C1:D1:74:F1:C1\",\"occupied\":false,\"online\":false,\"lastNotificationDate\":1539159310000,\"floor\":3,\"room\":385},{\"id\":\"01:F1:D1:88:99:C1\",\"occupied\":false,\"online\":false,\"lastNotificationDate\":1539159310000,\"floor\":1,\"room\":132},{\"id\":\"06:F9:A1:AA:BB:C1\",\"occupied\":false,\"online\":true,\"lastNotificationDate\":1539159310000,\"floor\":3,\"room\":395}]")
+        val expandableListAdapter = FloorListAdapter(
+            applicationContext,
+            //JSONTableParser.parseArray(response)
+            JSONTableParser.parseArray(testArray)
+        )
+        expandableListView.setAdapter(expandableListAdapter)
+
+
+
+//        controller.post(url, null) { response ->
+//            val expandableListAdapter = FloorListAdapter(
+//                applicationContext,
+//                //JSONTableParser.parseArray(response)
+//                JSONTableParser.parseArray(testArray)
+//            )
+//            expandableListView.setAdapter(expandableListAdapter)
+//        }
 
 
 
@@ -40,45 +52,3 @@ class TablesActivity : AppCompatActivity() {
         }
 
     }
-
-
-/* POC
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tables)
-
-
-        var expandableListDetail: HashMap<String, List<String>> = FloorListPump.data
-        var expandableListTitle = ArrayList<String>(expandableListDetail.keys)
-        var expandableListAdapter = FloorListAdapter(
-            this,
-            expandableListTitle,
-            expandableListDetail
-        )
-        expandableListView.setAdapter(expandableListAdapter);
-        expandableListView.setOnGroupExpandListener {
-            Toast.makeText(
-                applicationContext,
-                "testX" + " List Expanded.",
-                Toast.LENGTH_SHORT
-            ).show();
-
-
-        }
-
-        expandableListView.setOnGroupCollapseListener {
-            Toast.makeText(
-                applicationContext,
-                "testX" + " List collapsed.",
-                Toast.LENGTH_SHORT
-            ).show();
-
-        }
-
-    }
-
-
-
- */

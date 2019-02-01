@@ -2,8 +2,6 @@ package nokia.tablefootball.tablefootballandroid.utils
 
 import nokia.tablefootball.tablefootballandroid.dto.TableDTO
 import java.util.*
-import kotlin.collections.Collection
-import kotlin.collections.getValue
 
 class TableDataUtil {
     companion object {
@@ -38,7 +36,7 @@ class TableDataUtil {
             return result
         }
 
-        fun asStringList(floors: Collection<Int>) : ArrayList<String>{
+        fun asStringList(floors: Collection<Int>) : List<String>{
             val list = ArrayList<String>(floors.size)
 
             for(i : Int in floors){
@@ -49,7 +47,7 @@ class TableDataUtil {
 
         }
 
-        fun dtoAsStringList(dtos: Collection<TableDTO>) : ArrayList<String>{
+        fun dtoAsStringList(dtos: Collection<TableDTO>) : List<String>{
             val list = ArrayList<String>(dtos.size)
 
             for(dto : TableDTO in dtos){

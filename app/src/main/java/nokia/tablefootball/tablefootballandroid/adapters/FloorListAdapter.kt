@@ -3,14 +3,18 @@ package nokia.tablefootball.tablefootballandroid.adapters
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import nokia.tablefootball.tablefootballandroid.R
 import nokia.tablefootball.tablefootballandroid.dto.TableDTO
 import nokia.tablefootball.tablefootballandroid.utils.TableDataUtil
@@ -52,25 +56,16 @@ class FloorListAdapter(private val context: Context, tableDtos: List<TableDTO>) 
         }
 
         childHolder.listView = convertView.findViewById(R.id.item_group_recycler_view) as RecyclerView
-   //     val layoutManager = FlexboxLayoutManager(context, FlexDirection.ROW, FlexWrap.WRAP)
-//        layoutManager.flexDirection = FlexDirection.ROW
-//        layoutManager.justifyContent = JustifyContent.CENTER
-//        layoutManager.flexWrap = FlexWrap.WRAP
+/*        val layoutManager = FlexboxLayoutManager(context).apply {
+            flexDirection = FlexDirection.ROW
+            justifyContent = JustifyContent.CENTER
+            flexWrap = FlexWrap.WRAP
+        }*/
 
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         childHolder.listView!!.layoutManager = layoutManager
-
-        val groupAdapter = ChildItemAdapter(context, tablesMap[listPosition]!!)
-        childHolder.listView!!.adapter = groupAdapter
-//
-//
-//        val tableImageView = convertView!!.findViewById<ImageView>(R.id.table_imageview)
-//        val tableRoomTextView = convertView.findViewById<TextView>(R.id.table_room_textview)
-//        val tableStateTextView = convertView.findViewById<TextView>(R.id.table_state_textview)
-//
-//        val tableDto = getChild(listPosition, expandedListPosition) as TableDTO
-
+        childHolder.listView!!.adapter = ChildItemAdapter(context, tablesMap[listPosition]!!)
 
         return convertView
     }

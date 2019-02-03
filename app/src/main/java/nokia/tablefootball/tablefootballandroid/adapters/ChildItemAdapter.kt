@@ -1,6 +1,7 @@
 package nokia.tablefootball.tablefootballandroid.adapters
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -51,10 +52,26 @@ class ChildItemAdapter(private val context: Context, var dtosList : ArrayList<Ta
             )
             tableImageView.setOnLongClickListener(TableLongClickListener(tableDto!!))
 
-            tableRoomTextView.text = "Room: ${tableDto!!.room.toString()}"
+            tableRoomTextView.text = "Room: ${tableDto!!.room}"
             tableStateTextView.text = if(!tableDto!!.online) "Inactive" else when(tableDto!!.occupied){
                 false -> "Free"
                 true -> "Occupied"
+            }
+
+            tableStateTextView.apply {
+                if(!tableDto!!.online) {
+                    text = "Inactive"
+                    setTextColor(ContextCompat.getColor(context, R.color.colorTableInactive))
+                }else when(tableDto!!.occupied){
+                    false -> {
+                        text = "Free"
+                        setTextColor(ContextCompat.getColor(context, R.color.colorTableFree))
+                    }
+                    true -> {
+                        text = "Occupied"
+                        setTextColor(ContextCompat.getColor(context,R.color.colorTableOccupied))
+                    }
+                }
             }
 
 

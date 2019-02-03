@@ -2,9 +2,6 @@ package nokia.tablefootball.tablefootballandroid
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
-import android.util.Log
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_tables.*
 import nokia.tablefootball.tablefootballandroid.adapters.FloorListAdapter
 import nokia.tablefootball.tablefootballandroid.network.DataAcquirerAPIController
@@ -16,6 +13,7 @@ class TablesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(findViewById(R.id.app_bar))
         setContentView(R.layout.activity_tables)
 
         val serviceImpl = DataAcquirerServiceImpl(this)
@@ -39,6 +37,9 @@ class TablesActivity : AppCompatActivity() {
         )
 
         expandableListView.setAdapter(expandableListAdapter)
-        }
+
+
+    }
+
 
     }

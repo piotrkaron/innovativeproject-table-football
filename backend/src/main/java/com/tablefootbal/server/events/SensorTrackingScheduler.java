@@ -1,6 +1,9 @@
 package com.tablefootbal.server.events;
 
+<<<<<<< HEAD
 import lombok.Getter;
+=======
+>>>>>>> back/android_notifications
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +31,10 @@ public class SensorTrackingScheduler implements ApplicationListener<SensorOfflin
 //    private int PLAYING_INTERVAL;
 
     @Value("${readings.seconds_until_offline}")
+<<<<<<< HEAD
     @Getter
+=======
+>>>>>>> back/android_notifications
     private int SECONDS_TILL_OFFLINE;
 
     final private
